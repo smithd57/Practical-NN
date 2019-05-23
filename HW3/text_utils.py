@@ -6,12 +6,10 @@ import numpy as np
 
 """
 Implement a class object that should have the following functions:
-
 1) object initialization:
 This function should be able to take arguments of data directory, batch size and sequence length.
 The initialization should be able to process data, load preprocessed data and create training and 
 validation mini batches.
-
 2)helper function to preprocess the text data:
 This function should be able to do:
     a)read the txt input data using encoding='utf-8'
@@ -22,12 +20,8 @@ This function should be able to do:
     c)split training and validation data.
     d)save your self.char as pickle (pkl) file that you may use later.
     d)map all characters of training and validation data to their integer label and save as 'npy' files respectively.
-
 3)helper function to load preprocessed data
-
 4)helper functions to create training and validation mini batches
-
-
 """
 class TextLoader():
     def __init__(self, directory, batch_size, seq_len):
@@ -169,4 +163,12 @@ class TextLoader():
         np.save("text_train_out", text_train_out)
         np.save("text_valid_in", text_valid_in)
         np.save("text_valid_out", text_valid_out)
+        
+    def load_data(self):
+        text_train_in = np.load("text_train_in.npy")
+        text_train_out = np.load("text_train_out.npy")
+        text_valid_in = np.load("text_valid_in.npy")
+        text_valid_out = np.load("text_valid_out.npy")
+        
+        return text_train_in, text_valid_in, text_train_out, text_valid_out
         
